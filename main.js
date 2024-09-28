@@ -59,11 +59,11 @@ app.get("/api/users/:id/logs", (req, res) => {
   let exercices = user.exercices;
 
   if (from) {
-    exercices = exercices.filter((exercice) => exercice.date >= from);
+    exercices = exercices.filter((exercice) => exercice.date >= new Date(from));
   }
 
   if (to) {
-    exercices = exercices.filter((exercice) => exercice.date <= to);
+    exercices = exercices.filter((exercice) => exercice.date <= new Date(to));
   }
 
   if (limit) {
@@ -117,6 +117,9 @@ app.post("/api/users/:id/exercises", (req, res) => {
 
   if (!date) {
     date = new Date();
+  }
+  else {
+    date = new Date(date);
   }
 
   const exerciceObject = {
