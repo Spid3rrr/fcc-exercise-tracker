@@ -119,7 +119,7 @@ app.post("/api/users/:id/exercices", (req, res) => {
   const exerciceObject = {
     description: description,
     duration: duration,
-    date: date,
+    date: date.toDateString(),
   };
   user.exercices.push(exerciceObject);
   res.json({
