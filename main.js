@@ -42,21 +42,19 @@ app.post("/api/users", (req, res) => {
 
   const id = generateId();
   user_db.push({ _id: id, username: username, exercices: [] });
-  console.log(user_db);
+  console.log(_id, username);
   res.json({ _id: id, username: username });
 });
 
 app.get("/api/users/:id/logs", (req, res) => {
   const id = req.params.id;
   const user = user_db.find((user) => user._id === id);
-  if (!user) {
-    res.status(404).send("User not found");
-    return;
-  }
 
   const from = req.query.from;
   const to = req.query.to;
   const limit = req.query.limit;
+
+  console.log(id,from, to, limit);
 
   let exercices = user.exercices;
 
