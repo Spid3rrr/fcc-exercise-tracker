@@ -42,6 +42,7 @@ app.post("/api/users", (req, res) => {
 
   const id = generateId();
   user_db.push({ _id: id, username: username, exercices: [] });
+  console.log(user_db);
   res.json({ _id: id, username: username });
 });
 
@@ -96,6 +97,8 @@ app.post("/api/users/:id/exercices", (req, res) => {
   const description = req.body.description;
   let duration = req.body.duration;
   let date = req.body.date;
+
+  console.log(id,description, duration, date);
 
   if (!description || !duration) {
     res.status(400).send("Description and duration are required");
