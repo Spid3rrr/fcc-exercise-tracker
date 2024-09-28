@@ -94,7 +94,7 @@ app.post("/api/users/:id/exercices", (req, res) => {
   }
 
   const description = req.body.description;
-  const duration = req.body.duration;
+  let duration = req.body.duration;
   let date = req.body.date;
 
   if (!description || !duration) {
@@ -112,6 +112,8 @@ app.post("/api/users/:id/exercices", (req, res) => {
     return;
   }
 
+  duration = parseInt(duration);
+
   if (!date) {
     date = new Date();
   }
@@ -119,11 +121,13 @@ app.post("/api/users/:id/exercices", (req, res) => {
   const exerciceObject = {
     description: description,
     duration: duration,
-    date: date.toDateString(),
+    date: date,
   };
   user.exercices.push(exerciceObject);
   res.json({
-    ...exerciceObject,
+    description: description,
+    duration: duration,
+    date: date.toDateString(),
     username: user.username,
     _id: user._id,
   });
@@ -134,10 +138,10 @@ app.listen(process.env.PORT || 3000, () => {
 });
 
 var generateId = () => {
-    var id = "";
-    var characters = "abcdefghijklmnopqrstuvwxyz0123456789";
-    for (var i = 0; i < 24; i++) {
-        id += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    return id;
+  var id = "";
+  var characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+  for (var i = 0; i < 24; i++) {
+    id += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return id;
 };
