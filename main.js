@@ -84,7 +84,7 @@ app.get("/api/users/:id/logs", (req, res) => {
   });
 });
 
-app.post("/api/users/:id/exercices", (req, res) => {
+app.post("/api/users/:id/exercises", (req, res) => {
   const id = req.params.id;
   const user = user_db.find((user) => user._id === id);
 //   if (!user) {
