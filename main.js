@@ -42,7 +42,7 @@ app.post("/api/users", (req, res) => {
 
   const id = generateId();
   user_db.push({ _id: id, username: username, exercices: [] });
-  console.log(_id, username);
+  console.log(id, username);
   res.json({ _id: id, username: username });
 });
 
